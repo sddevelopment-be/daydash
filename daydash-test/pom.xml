@@ -12,6 +12,10 @@
 
     <artifactId>daydash-test</artifactId>
 
+    <properties>
+        <sonar.projectKey>sddevelopment_${project.artifactId}</sonar.projectKey>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

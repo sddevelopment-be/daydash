@@ -13,6 +13,10 @@
 
     <artifactId>daydash-core</artifactId>
 
+    <properties>
+        <sonar.projectKey>sddevelopment_${project.artifactId}</sonar.projectKey>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>be.sddevelopment.daydash</groupId>

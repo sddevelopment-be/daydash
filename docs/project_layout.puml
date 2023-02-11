@@ -1,0 +1,26 @@
+@startuml
+
+package "Shared artefacts" {
+  folder "Shared documentation"
+  [Central Dependency management]
+  [Deployment and build definitions]
+  folder "Project shared kernel" {
+    [shared code artefacts]
+  }
+}
+
+database "???" {
+  frame "Database version manager" {
+      [Liquibase]
+    }
+
+  folder "Database Definition" {
+    [DML/DDL objects]
+  }
+
+}
+
+[Liquibase] -> [DML/DDL objects] : controls deployment of
+
+
+@enduml

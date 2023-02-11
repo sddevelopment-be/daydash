@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>be.sddevelopment.daydash</groupId>
+	<artifactId>DayDash</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>SD Development</name>
+		<url>https://www.sddevelopment.be</url>
+	</organization>
+	<developers>
+		<developer>
+			<name>Stijn Dejongh</name>
+			<organization>SD Development</organization>
+			<organizationUrl>https://www.sddevelopment.be</organizationUrl>
+			<roles>
+				<role>Project maintainer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>daydash-test</module>
+		<module>daydash-core</module>
+		<module>daydash-api</module>
+		<module>daydash-persistence</module>
+		<module>daydash-application</module>
+	</modules>
+
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<sonar.organization>sddevelopment-be</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.projectKey>sddevelopment_daydash</sonar.projectKey>
+		<sonar.modules>daydash-test,daydash-core,daydash-api,daydash-persistence,daydash-application</sonar.modules>
+		<sonar.coverage.jacoco.xmlReportPaths>${jacoco.build.dir}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<jacoco.build.dir>${project.build.directory}/jacoco</jacoco.build.dir>
+
+		<junit.jupiter.version>5.9.2</junit.jupiter.version>
+		<lombok.version>1.18.26</lombok.version>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub OWNER Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/sddevelopment-be/daydash</url>
+		</repository>
+	</distributionManagement>
+
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/sddevelopment-be/coding-utils</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- INTERNAL -->
+			<dependency>
+				<groupId>be.sddevelopment.daydash</groupId>
+				<artifactId>daydash-test</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>be.sddevelopment.daydash</groupId>
+				<artifactId>daydash-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>be.sddevelopment.daydash</groupId>
+				<artifactId>daydash-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>be.sddevelopment.daydash</groupId>
+				<artifactId>daydash-persistence</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- UTILITIES -->
+			<dependency>
+				<groupId>be.sddevelopment</groupId>
+				<artifactId>code-utils</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit.jupiter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit.jupiter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>3.24.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>5.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>5.1.1</version>
+			</dependency>
+
+			<!-- FRAMEWORK -->
+			<!-- https://springdoc.org/ -->
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>1.6.14</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-hateoas</artifactId>
+				<version>1.6.14</version>
+			</dependency>
+			<!-- SPRING framework -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-hateoas</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>be.sddevelopment</groupId>
+			<artifactId>code-utils</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.9.1.2184</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${maven.compiler.target}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+				<version>1.18.20.0</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<show>public</show>
+					<nohelp>true</nohelp>
+					<reportOutputDirectory>docs/javadoc</reportOutputDirectory>
+					<destDir>.</destDir>
+					<stylesheet>maven</stylesheet>
+					<stylesheetfile>${project.basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+					<defaultVersion>${project.version}</defaultVersion>
+					<sourcepath>${project.basedir}/target/generated-sources/delombok</sourcepath>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.0.0</version>
+				<configuration>
+					<verbose>false</verbose>
+					<addSvnKeyWords>false</addSvnKeyWords>
+					<organizationName>${project.organization.name}</organizationName>
+					<inceptionYear>2020</inceptionYear>
+					<emptyLineAfterHeader>true</emptyLineAfterHeader>
+					<writeVersions>true</writeVersions>
+					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+					<licenseName>eupl_v1_1</licenseName>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<licenseName>eupl_v1_1</licenseName>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test</root>
+							</roots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- attached to Maven test phase -->
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>target/jacoco.exec</dataFile>
+							<outputDirectory>target/jacoco</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>be/sddevelopment/commons/constants/**/*.class</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<banDuplicatePomDependencyVersions/>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<reportOutputDirectory>docs/javadoc</reportOutputDirectory>
+					<destDir>javadoc</destDir>
+					<stylesheet>maven</stylesheet>
+					<stylesheetfile>${project.basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<id>aggregate</id>
+						<inherited>false</inherited>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+					<reportSet>
+						<id>default</id>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

@@ -1,0 +1,78 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/java.puml
+!include DEVICONS/msql_server.puml
+!include FONTAWESOME/users.puml
+!include FONTAWESOME/whmcs.puml
+!include FONTAWESOME/thermometer.puml
+!include FONTAWESOME/bullseye.puml
+!include FONTAWESOME/business_time.puml
+!include FONTAWESOME/hand_holding_heart.puml
+!include FONTAWESOME/gift.puml
+!include FONTAWESOME/grin_stars.puml
+!include FONTAWESOME/tasks.puml
+
+AddElementTag("domain", $fontColor=#454545, $bgColor="#335DA565", $shape=EightSidedShape())
+
+skinparam defaultTextAlignment left
+
+skinparam wrapWidth 180
+skinparam maxMessageSize 110
+
+skinparam linetype ortho
+
+skinparam nodesep 125
+skinparam ranksep 120
+skinparam padding 20
+
+LAYOUT_WITH_LEGEND()
+
+title Domain decomposition for DayDash, a goal and resource tracking utility
+
+' Person(user, "Customer", "People that need products", $sprite="users")
+' Container(spa, "SPA", "angular", "The main interface that the customer interacts with", $sprite="angular")
+' Container(api, "API", "java", "Handles all business logic", $sprite="java")
+' ContainerDb(db, "Database", "Microsoft SQL", "Holds product, order and invoice information", $sprite="msql_server")
+
+' Rel(user, spa, "Uses", "https")
+' Rel(spa, api, "Uses", "https")
+' Rel_R(api, db, "Reads/Writes")
+
+'Person(unit, "Organisational Unit", "People that need products", $sprite="users")
+'Person(user, "User", "Natural person")
+
+'user "1..*" -right- unit
+
+Boundary(strategic, "Strategic", "core domain", "Models the strategic goals, values and vision that are the drivers behind the daily actions taken by you and your team", $tags="domain") {
+    Component(value, "Value", "concept", "A principle or standard, as of behavior, that is considered important or desirable.", $sprite=hand_holding_heart)
+    Component(ambition, "Ambition", "concept", "An eager or strong desire to progress towards an achievement over a very long period of time.", $sprite=grin_stars)
+    Component(goal, "Goal", "concept", "A specific target, aim, or objective that serves as the focus of achievement.", $sprite=bullseye)
+
+    Rel_R(value, ambition, "drives the specification of")
+    Rel_R(ambition, goal, "is (partly) realized by iterative completion of.")
+
+    Component(process, "Process", "concept", "A series of actions or operations conducing to an end.", $sprite=whmcs)
+    Component(result, "Result", "concept", "A consequence, effect, or conclusion of a completed action.", $sprite=gift)
+    Component(status, "Status", "concept", "The state or condition with respect to circumstances. e.g. 'to do', 'in process', 'done'.", $sprite=tasks)
+    Component(action, "Action", "concept", "The act of performing", $sprite=business_time)
+
+    Rel(process, goal, "describes the path towards completion of")
+    Rel(process, action, "is a chain of")
+    Rel(action, result, "produces")
+    Rel(action, status, "has a")
+
+}
+
+Boundary(measure, "Measuring and Tracking", "domain", "", $tags="domain") {
+    Component(accCriteria, "Acceptance Criteria", "concept", "A set of quantifyable measurements that define the minimum level needed to satisfactory completion of a goal.", $sprite=thermometer)
+    Rel(accCriteria, goal, "determine succes of")
+    Rel(accCriteria, result, "are used to evaluate")
+}
+
+@enduml

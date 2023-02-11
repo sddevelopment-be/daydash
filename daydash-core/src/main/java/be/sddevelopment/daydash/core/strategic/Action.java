@@ -54,25 +54,18 @@ public class Action {
 	String name;
 	@Builder.Default
 	Status status = BACKLOG;
-
-	public String identifier() {
-		return identifier.toString();
-	}
-
 	@Getter(AccessLevel.NONE)
 	@EqualsExclude
 	@HashCodeExclude
 	ActionRepository repository;
 
+	public String identifier() {
+		return identifier.toString();
+	}
+
 	public Action start() {
 		this.status.transitionTo(IN_PROGRESS);
 		save();
-		return this;
-	}
-
-	public Action finish() {
-		this.status.transitionTo(DONE);
-		this.save();
 		return this;
 	}
 
@@ -82,5 +75,11 @@ public class Action {
 		} catch (FailureToPersist e) {
 			log.error("Failure to persist Action {}", this.identifier);
 		}
+	}
+
+	public Action finish() {
+		this.status.transitionTo(DONE);
+		this.save();
+		return this;
 	}
 }

@@ -1,0 +1,33 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/java.puml
+!include DEVICONS/msql_server.puml
+!include FONTAWESOME/users.puml
+!include FONTAWESOME/whmcs.puml
+!include FONTAWESOME/thermometer.puml
+!include FONTAWESOME/bullseye.puml
+!include FONTAWESOME/business_time.puml
+!include FONTAWESOME/hand_holding_heart.puml
+!include FONTAWESOME/gift.puml
+!include FONTAWESOME/grin_stars.puml
+!include FONTAWESOME/tasks.puml
+
+AddElementTag("domain", $fontColor=#454545, $bgColor="#335DA565", $shape=EightSidedShape())
+
+skinparam defaultTextAlignment left
+
+skinparam wrapWidth 180
+skinparam maxMessageSize 110
+
+skinparam linetype ortho
+
+skinparam nodesep 125
+skinparam ranksep 120
+skinparam padding 20
+
+@enduml

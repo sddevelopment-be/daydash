@@ -10,4 +10,5 @@ A modular resource and time management tool, aimed at offering a customizable da
 Most of all, this project is a revamped version of an older attempt at writing a nice structured,
 extensible project-setup. The intent is to practise a few design and coding techniques in an actual use case.
 
-See the [./docs/DEV_LOG](./docs/DEV_LOG.md) file to keep track of how I approached this process.
+See the [./docs/DEV_LOG](src/main/docs/operational/DEV_LOG.md) file to keep track of how I approached this process.
+

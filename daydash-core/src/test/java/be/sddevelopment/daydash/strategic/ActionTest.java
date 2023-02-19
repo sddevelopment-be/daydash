@@ -53,7 +53,7 @@ class ActionTest implements DayDashBaseTest {
 
 	@Test
 	@SneakyThrows
-	void whenAnActionsTransitions_thenItsPersited() {
+	void whenAnActionsTransitions_thenItsPersisted() {
 		var action = action().withRepository(stubRepo()).withName("Do something").create();
 		stubRepo().save(action);
 		assertThat(stubRepo().actionByIdentifier(action.identifier())).isPresent();
